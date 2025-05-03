@@ -32,7 +32,8 @@ public class MarqueRestController {
 
 
     @GetMapping
-    public Page<MarqueDto> getMarques(int pageNbr,int pageSize){
+    public Page<MarqueDto> getMarques(@RequestParam(defaultValue = "0") int pageNbr,
+                                      @RequestParam(defaultValue = "10") int pageSize){
         return marqueService.getMarques(pageNbr,pageSize);
     }
 

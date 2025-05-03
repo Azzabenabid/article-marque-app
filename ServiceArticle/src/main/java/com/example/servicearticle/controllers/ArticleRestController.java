@@ -3,10 +3,11 @@ package com.example.servicearticle.controllers;
 import com.example.servicearticle.dto.ArticleDto;
 import com.example.servicearticle.services.IArticleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
+
 
 @RestController
 @RequestMapping("/articles")
@@ -31,8 +32,8 @@ public class ArticleRestController {
     }
 
     @GetMapping
-    public Page<ArticleDto> getArticles(@RequestParam int pageNbr, @RequestParam int pageSize){
-        return articleService.getArticles(pageNbr, pageSize);
+    public List<ArticleDto> getArticles() {
+        return articleService.getArticles();  // Pas de pagination, on récupère tous les articles
     }
 
     @GetMapping("{id}")

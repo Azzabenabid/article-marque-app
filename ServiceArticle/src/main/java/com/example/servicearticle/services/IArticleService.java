@@ -3,6 +3,7 @@ package com.example.servicearticle.services;
 import com.example.servicearticle.dto.ArticleDto;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IArticleService {
@@ -13,7 +14,7 @@ public interface IArticleService {
 
     boolean delete(Long idArticle);  // ID changé en Long
 
-    Page<ArticleDto> getArticles(int pageNbr, int pageSize);
+    List<ArticleDto> getArticles();
 
     ArticleDto getArticle(Long id);  // ID changé en Long
 

@@ -6,14 +6,15 @@ import com.example.servicearticle.repositories.ArticleRepository;
 import com.example.servicearticle.dto.ArticleDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -57,10 +58,11 @@ public class IArticleServiceImp implements IArticleService {
     }
 
     @Override
-    public Page<ArticleDto> getArticles(int pageNbr, int pageSize) {
-        Page<Article> articles = articleRepository.findAll(PageRequest.of(pageNbr, pageSize));
-        return articles.map(articleMapper::mapToDto);  // Utilisation de articleMapper pour la conversion vers DTO
+    public List<ArticleDto> getArticles() {
+        List<Article> articles = articleRepository.findAll();  // Récupère tous les articles
+        return articles.stream().map(articleMapper::mapToDto).collect(Collectors.toList());  // Convertir chaque article en DTO
     }
+
 
     @Override
     public ArticleDto getArticle(Long id) {

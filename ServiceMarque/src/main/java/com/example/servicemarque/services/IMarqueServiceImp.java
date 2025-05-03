@@ -6,12 +6,15 @@ import com.example.servicemarque.mappers.MarqueMapper;
 import com.example.servicemarque.repositories.MarqueRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -55,9 +58,14 @@ public class IMarqueServiceImp implements IMarqueService {
 
     @Override
     public Page<MarqueDto> getMarques(int pageNbr, int pageSize) {
-        return marqueRepository.findAll(PageRequest.of(pageNbr,pageSize))
-                .map(marqueMapper::mapToDto);
+        Pageable pageable = PageRequest.of(pageNbr, pageSize);
+        Page<Marque> page = marqueRepository.findAll(pageable);
+        List<MarqueDto> content = page.getContent().stream()
+                .map(marqueMapper::mapToDto)
+                .toList();
+        return new PageImpl<>(content, pageable, page.getTotalElements());
     }
+
 
     @Override
     public MarqueDto getMarque(String id) {
