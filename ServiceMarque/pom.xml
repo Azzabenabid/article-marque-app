@@ -92,6 +92,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.plugin.version}</version>
                 <configuration>
+                    <encoding>UTF-8</encoding>
                     <!--suppress UnresolvedMavenProperty -->
                     <source>${maven.compiler.source}</source>
                     <!--suppress UnresolvedMavenProperty -->

@@ -1,8 +1,8 @@
 spring:
   application:
-    name: MARQUESERVICE
+    name: marqueservice
   cloud:
     config:
-      uri: http://localhost:8888  # URL du ConfigServer
+      uri: http://config-server:8888
   profiles:
     active: dev
