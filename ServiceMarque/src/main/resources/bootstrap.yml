@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: MARQUESERVICE
+  cloud:
+    config:
+      uri: http://localhost:8888  # URL du ConfigServer
+  profiles:
+    active: dev

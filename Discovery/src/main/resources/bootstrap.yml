@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: discovery-service # ou MARQUESERVICE, GATEWAY-API, etc.
+  cloud:
+    config:
+      uri: http://localhost:8888  # URL de ton ConfigServer
+  profiles:
+    active: dev  # correspond au fichier ARTICLESERVICE-dev.yml dans le repo
